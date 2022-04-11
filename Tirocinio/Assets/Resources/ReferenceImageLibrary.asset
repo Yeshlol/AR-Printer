@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5095476599622948422
+  m_GuidHigh: 7570795610049297549
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5600426680329813465
+      m_GuidHigh: 17589874890940350393
+    m_SerializedTextureGuid:
+      m_GuidLow: 11706154180622094958
+      m_GuidHigh: 1087598266580233978
+    m_Size: {x: 0.4, y: 0.53333336}
+    m_SpecifySize: 1
+    m_Name: Stampante
+    m_Texture: {fileID: 2800000, guid: 95ef126e9d34a274fa6ed871dcec170f, type: 3}

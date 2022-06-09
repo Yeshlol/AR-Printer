@@ -1,6 +1,8 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+// Questo script gestisce l'interazione dell'utente con un bottone, indicando quale bottone evidenziare al ButtonGroup.
 namespace UnityEngine.XR.Tirocinio
 {
     [RequireComponent(typeof(Image))]

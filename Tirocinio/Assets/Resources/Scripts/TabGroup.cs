@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine.UI;
 
+
+// Questo script gestisce i TabButton associati ai tab dell'interfaccia utente. Registra il button nel TabGroup, ne permette la selezione e l'interazione con l'utente, modificandone anche il colore e lo sprite.
+// Alla selezione di un tab, verrà attivato soltanto il GameObject associato ad esso, mentre gli altri verranno disattivati.
 namespace UnityEngine.XR.Tirocinio
 {
     public class TabGroup : MonoBehaviour
@@ -9,8 +11,6 @@ namespace UnityEngine.XR.Tirocinio
         public Color tabHover;
         public TabButton selectedTab;
         public List<GameObject> objectsToSwap;
-        [SerializeField] private UpdateScript updateScript;
-        [SerializeField] private GoBackScript goBackScript;
         
 
         public void Start()

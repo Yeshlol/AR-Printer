@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+// Questo script permette all'utente di trascinare l'UI-Stampante trascinando la label superiore
 public class DragWindow : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     [SerializeField] private RectTransform dragRectTransform;

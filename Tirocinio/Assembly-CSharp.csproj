@@ -58,21 +58,33 @@
   <ItemGroup>
     <Compile Include="Assets\Resources\Scripts\UpdateScript.cs" />
     <Compile Include="Assets\Resources\Scripts\QuitScript.cs" />
-    <Compile Include="Assets\Resources\Scripts\Sample\PrefabImagePairManager.cs" />
+    <Compile Include="Assets\PieChart\PieChartMeshController.cs" />
     <Compile Include="Assets\Resources\Scripts\ShowAR.cs" />
+    <Compile Include="Assets\PieChart\Stat.cs" />
     <Compile Include="Assets\Resources\Scripts\PrefabImagePairManager.cs" />
+    <Compile Include="Assets\Planet Earth Free\SpinFree.cs" />
+    <Compile Include="Assets\Resources\Scripts\NoButtonScript.cs" />
+    <Compile Include="Assets\PieChart\ClickEffect.cs" />
+    <Compile Include="Assets\Resources\Scripts\SelectPrefabScript.cs" />
+    <Compile Include="Assets\PieChart\OutlineEffect\LinkedSet.cs" />
     <Compile Include="Assets\Resources\Scripts\ObjectScaling.cs" />
     <Compile Include="Assets\Resources\Scripts\Button.cs" />
     <Compile Include="Assets\Resources\Scripts\HideScript.cs" />
     <Compile Include="Assets\Resources\Scripts\TabGroup.cs" />
-    <Compile Include="Assets\Resources\Scripts\ArrowButton.cs" />
-    <Compile Include="Assets\Resources\Scripts\Sample\DynamicPrefab.cs" />
+    <Compile Include="Assets\Resources\Scripts\InteractablePrefab.cs" />
+    <Compile Include="Assets\PieChart\OutlineEffect\OutlineEffect.cs" />
     <Compile Include="Assets\Resources\Scripts\GoForwardScript.cs" />
+    <Compile Include="Assets\PieChart\CanvasDataManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\ShowStats.cs" />
     <Compile Include="Assets\Resources\Scripts\GoBackScript.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonGroup.cs" />
     <Compile Include="Assets\Resources\Scripts\DragWindow.cs" />
+    <Compile Include="Assets\PieChart\OutlineEffect\Outline.cs" />
+    <Compile Include="Assets\PieChart\PieChartMesh.cs" />
+    <Compile Include="Assets\PieChart\PartProperties.cs" />
+    <Compile Include="Assets\Resources\Scripts\IncrementStatScript.cs" />
     <Compile Include="Assets\Resources\Scripts\TabButton.cs" />
-    <Compile Include="Assets\Resources\Scripts\PressedPrefab.cs" />
+    <Compile Include="Assets\PieChart\PieChart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -81,6 +93,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\PieChart\OutlineEffect\Resources\OutlineBufferShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -90,6 +103,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\PieChart\OutlineEffect\Resources\OutlineShader.shader" />
+    <None Include="Assets\PieChart\Resources\Materials\DoubleSided.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

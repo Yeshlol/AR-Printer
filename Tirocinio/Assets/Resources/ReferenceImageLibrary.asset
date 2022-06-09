@@ -16,12 +16,22 @@ MonoBehaviour:
   m_GuidHigh: 7570795610049297549
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 5600426680329813465
-      m_GuidHigh: 17589874890940350393
+      m_GuidLow: 5401029272939217127
+      m_GuidHigh: 714017061668518539
     m_SerializedTextureGuid:
-      m_GuidLow: 11706154180622094958
-      m_GuidHigh: 1087598266580233978
+      m_GuidLow: 2252985293876910501
+      m_GuidHigh: 1598686420706792043
     m_Size: {x: 0.4, y: 0.53333336}
     m_SpecifySize: 1
     m_Name: Stampante
-    m_Texture: {fileID: 2800000, guid: 95ef126e9d34a274fa6ed871dcec170f, type: 3}
+    m_Texture: {fileID: 2800000, guid: 1db659a536301f446b127855d4ac2f16, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5280059095589885200
+      m_GuidHigh: 813318645528159641
+    m_SerializedTextureGuid:
+      m_GuidLow: 14565913443635154262
+      m_GuidHigh: 15878429954130871816
+    m_Size: {x: 0.4, y: 0.53333336}
+    m_SpecifySize: 1
+    m_Name: Mappamondo
+    m_Texture: {fileID: 2800000, guid: 7cf5cd56851aca240886e46eea835bdc, type: 3}

@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine.XR.ARSubsystems;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 
+
+// Questo script gestisce i prefab associati alle immagini da tracciare. Contiene una lista di NamedPrefab a cui vanno associati, per ogni immagine della ReferenceImageLibrary, un prefab di base.
+// Inoltre memorizza due dictionary <Guid, GameObject>, per tenere traccia del prefab associato attualmente all'immagine e quali sono quelli istanziati.
+// Associa anche la parentTransform del PieChartScript per fissarne la posizione nella scena.
 namespace UnityEngine.XR.Tirocinio
 {
     /// <summary>
@@ -38,6 +41,8 @@ namespace UnityEngine.XR.Tirocinio
         [HideInInspector]
         List<NamedPrefab> m_PrefabsList = new List<NamedPrefab>();
 
+        public PieChart pieChartScript;
+
         Dictionary<Guid, GameObject> m_PrefabsDictionary = new Dictionary<Guid, GameObject>();
         [HideInInspector]
         public Dictionary<Guid, GameObject> m_Instantiated = new Dictionary<Guid, GameObject>();
@@ -58,12 +63,13 @@ namespace UnityEngine.XR.Tirocinio
 
         [SerializeField] private GameObject CanvasStart;
         [SerializeField] private GameObject ShowButton;
+        [SerializeField] private GameObject ShowStatsButton;
         [SerializeField] private GameObject MinusButton;
         [SerializeField] private GameObject UI;
         [SerializeField] private ShowAR showAR;
         private bool first = true;
 
-        public Text testo;
+        public Text testo; //DEBUG
 
         public void OnBeforeSerialize()
         {
@@ -100,21 +106,27 @@ namespace UnityEngine.XR.Tirocinio
 
         void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
         {
-            if (first)
+            ARTrackedImage trackedImage = eventArgs.added[0];
+            if (first && trackedImage.referenceImage.name == "Stampante")
             {
+                trackedImage.transform.localScale = new Vector3(0.3f, 1f, 0.3f);
+
+                pieChartScript.parentTransform = trackedImage.transform;
+
                 CanvasStart.SetActive(false);
-                ExecuteEvents.Execute<IPointerClickHandler>(MinusButton, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
                 ShowButton.SetActive(true);
+                ShowStatsButton.SetActive(true);
                 UI.SetActive(true);
                 first = false;
             }
 
-            foreach (var trackedImage in eventArgs.added)
+
+            foreach (var trackdImage in eventArgs.added)
             {
                 // Give the initial image a reasonable default scale
                 // var minLocalScalar = Mathf.Min(trackedImage.size.x, trackedImage.size.y) /2;
-                trackedImage.transform.localScale = new Vector3(0.3f, 1f, 0.3f);
-                AssignPrefab(trackedImage);
+                trackdImage.transform.localScale = new Vector3(0.3f, 1f, 0.3f);
+                AssignPrefab(trackdImage);
             }
         }
 
@@ -122,9 +134,7 @@ namespace UnityEngine.XR.Tirocinio
         {
             if (m_PrefabsDictionary.TryGetValue(trackedImage.referenceImage.guid, out var prefab))
             {
-                //testo.text += "\nPrefab trovato nel prefabdictionary";
                 m_Instantiated[trackedImage.referenceImage.guid] = Instantiate(prefab, trackedImage.transform);
-                //testo.text += "\nPrefab istanziato dal prefabdictionary";
             }
         }
 
@@ -137,14 +147,14 @@ namespace UnityEngine.XR.Tirocinio
             if (m_Instantiated.TryGetValue(referenceImage.guid, out var instantiatedPrefab))
             {
                 m_Instantiated[referenceImage.guid] = Instantiate(alternativePrefab, instantiatedPrefab.transform.parent);
+                Destroy(instantiatedPrefab);
+
                 if (showAR.hidden)
                 {
                     m_Instantiated[referenceImage.guid].SetActive(false);
-                }
-                instantiatedPrefab.SetActive(false);
+                }                
             }
         }
-
 
 #if UNITY_EDITOR
         /// <summary>

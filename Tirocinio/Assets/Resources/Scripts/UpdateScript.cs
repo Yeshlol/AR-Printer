@@ -4,20 +4,22 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.XR.ARFoundation;
 
+
+// Questo script gestisce tramite Update() le modifiche da apportare all'interfaccia utente, utilizzando la variabile 'state' a cui è possibile assegnare uno dei possibili State.
+// Di volta in volta, andrà a recuperare, tramite UnityWebRequest, il video o immagine da mostrare in Realtà Aumentata, e andrà a sostituire il prefab da associare all'immagine tracciata.
 namespace UnityEngine.XR.Tirocinio
 {
-    /// <summary>
-    /// Change the prefab for the first image in library at runtime.
-    /// </summary>
     [RequireComponent(typeof(ARTrackedImageManager))]
     public class UpdateScript : MonoBehaviour
     {
         private GameObject originalPrefab;
 
-        [SerializeField] private GameObject videoPrefab;
-        [SerializeField] private GameObject imagePrefab;
-        [SerializeField] private GameObject forwardButton;
-
+        public GameObject videoPrefab;
+        public GameObject imagePrefab;
+        [SerializeField] private GoForwardScript goForwardScript;
+        [SerializeField] private GoBackScript goBackScript;
+        [HideInInspector] public Sprite currentSprite;
+        [HideInInspector] public string currentUrl;
 
         public enum State
         {
@@ -81,7 +83,7 @@ namespace UnityEngine.XR.Tirocinio
 
         public State state = State.Idle;
 
-        public Text testo; //DEB
+        public Text testo; //DEBUG
 
         public void Update()
         {
@@ -103,7 +105,7 @@ namespace UnityEngine.XR.Tirocinio
                 case State.SwapToFax2:
                     {
                         ChangeToImage("PulsanteFax");
-                        state = State.Fax2;                        
+                        state = State.Fax2;
                         break;
                     }
                 case State.SwapToFax3:
@@ -113,9 +115,9 @@ namespace UnityEngine.XR.Tirocinio
                         break;
                     }
                 case State.SwapToFax4:
-                    {                        
-                        ChangeToImage("TastierinoNumerico");
+                    {
                         state = State.Fax4;
+                        ChangeToImage("TastierinoNumerico");                        
                         break;
                     }
 
@@ -258,8 +260,8 @@ namespace UnityEngine.XR.Tirocinio
                     }
                 case State.SwapToToner3:
                     {
-                        ChangeToVideo("ChiusuraSportello");
                         state = State.Toner3;
+                        ChangeToVideo("ChiusuraSportello");                        
                         break;
                     }
                 case State.BackToToner2:
@@ -291,8 +293,8 @@ namespace UnityEngine.XR.Tirocinio
                     }
                 case State.SwapToFogli3:
                     {
-                        ChangeToVideo("ChiusuraCarrello");
                         state = State.Fogli3;
+                        ChangeToVideo("ChiusuraCarrello");                        
                         break;
                     }
                 case State.BackToFogli2:
@@ -312,14 +314,8 @@ namespace UnityEngine.XR.Tirocinio
                 // Zona Carta
                 case State.SwapToCarta:
                     {
-                        ChangeToVideo("EstrazioneCarta");
-
-                        ArrowButton arrowButton = forwardButton.GetComponent<ArrowButton>();
-                        arrowButton.Start();
-                        arrowButton.active = false;
-                        arrowButton.ResetButton();
-
                         state = State.Carta;
+                        ChangeToVideo("EstrazioneCarta");                        
                         break;
                     }
 
@@ -327,16 +323,15 @@ namespace UnityEngine.XR.Tirocinio
                     {
                         manager.SetPrefabForReferenceImage(library[0], originalPrefab);
 
-                        ArrowButton arrowButton = forwardButton.GetComponent<ArrowButton>();
-                        arrowButton.Start();
-                        arrowButton.active = true;
-                        arrowButton.ResetButton();
+                        goForwardScript.SetForwardActive();
 
                         state = State.Idle;
                         break;
                     }
             }
         }
+               
+
 
         private IEnumerator SetImage(string url)
         {
@@ -351,17 +346,28 @@ namespace UnityEngine.XR.Tirocinio
             {
                 Texture2D tex = ((DownloadHandlerTexture)request.downloadHandler).texture;
                 Sprite sprite = Sprite.Create(tex, new Rect(0, 0, 4000, 3000), new Vector2(tex.width / 2, tex.height / 2));
+                currentSprite = sprite;
                 imagePrefab.GetComponentInChildren<Image>().sprite = sprite;
 
                 var manager = GetComponent<PrefabImagePairManager>();
                 var library = manager.imageLibrary;
 
                 manager.SetPrefabForReferenceImage(library[0], imagePrefab);
-            }            
+            }
+
+            if (state != State.Fax4 && state != State.Scan5 && state != State.Copy4)
+            {
+                goForwardScript.SetForwardActive();
+                goBackScript.SetBackActive();
+            }
         }
+
 
         private void ChangeToImage(string imageName)
         {
+            goForwardScript.SetForwardInactive();
+            goBackScript.SetBackInactive();
+
             string url = "http://93.41.140.68:8000/api/image/";
 
             switch (imageName)
@@ -388,6 +394,9 @@ namespace UnityEngine.XR.Tirocinio
 
         private void ChangeToVideo(string videoName)
         {
+            goForwardScript.SetForwardInactive();
+            goBackScript.SetBackInactive();
+
             string url = "http://93.41.140.68:8000/api/video/";
 
             switch (videoName)
@@ -423,11 +432,18 @@ namespace UnityEngine.XR.Tirocinio
 
             VideoPlayer videoPlayer = videoPrefab.GetComponentInChildren<VideoPlayer>();
             videoPlayer.url = url;
+            currentUrl = url;
 
             var manager = GetComponent<PrefabImagePairManager>();
             var library = manager.imageLibrary;
 
             manager.SetPrefabForReferenceImage(library[0], videoPrefab);
+
+            if (state != State.Fogli3 && state != State.Toner3 && state != State.Carta)
+            {
+                goForwardScript.SetForwardActive();                
+            }
+            goBackScript.SetBackActive();
         }
     }    
 }

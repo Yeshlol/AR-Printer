@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+
+// Questo script gestisce un insieme di Button, registrandoli al gruppo, colorandoli in base all'interazione con l'utente e attivando/disattivando i gameobject di conseguenza.
 namespace UnityEngine.XR.Tirocinio
 {
     public class ButtonGroup : MonoBehaviour

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+// Questo script permette di ingrandire/ridurre l'interfaccia utente
 public class ObjectScaling : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private bool _isDragging;

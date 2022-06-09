@@ -1,7 +1,8 @@
-using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+// Questo script attiva o disattiva i gameobject dell'interfaccia utente alla pressione dell'HideButton, modificando di conseguenza lo sprite e il colore del bottone.
 namespace UnityEngine.XR.Tirocinio
 {
     public class HideScript : MonoBehaviour, IPointerClickHandler

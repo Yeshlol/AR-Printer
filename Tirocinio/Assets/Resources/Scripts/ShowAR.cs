@@ -3,21 +3,21 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
+
+// Questo script gestisce l'interazione dell'utente con il tasto ShowButton, modificandone il colore e attivando/disattivando tutti gli elementi in Realtà Aumentata istanziati.
 namespace UnityEngine.XR.Tirocinio
 {
     public class ShowAR : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
     {
-        [SerializeField]
-        private Text testo;
-        [SerializeField]
-        private PrefabImagePairManager prefImagePairManager;
+        [SerializeField] private Text testo; // DEBUG
+        [SerializeField] private PrefabImagePairManager prefImagePairManager;
 
         [HideInInspector]
         public bool hidden = false;
 
-
-        public Color buttonHover;
+        [SerializeField] private Color buttonHover;
         private Image background;
+
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -25,9 +25,11 @@ namespace UnityEngine.XR.Tirocinio
             background.color = buttonHover;
         }
 
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            //testo.text += "\nState = " + updateScript.state;
+            //testo.text += "\nHidden = " + hidden + "\n";
+            //testo.text += "\nState = " + updateScript.state + "\n;
             Dictionary<Guid, GameObject> prefabs = prefImagePairManager.m_Instantiated;
                         
             if (hidden)
@@ -37,8 +39,8 @@ namespace UnityEngine.XR.Tirocinio
                     prefab.Value.SetActive(true);
                 }
 
-                SetColor();                
                 hidden = false;
+                SetColor();
             }
             else
             {
@@ -46,10 +48,10 @@ namespace UnityEngine.XR.Tirocinio
                 {
                     prefab.Value.SetActive(false);
                 }
-
-                SetColor();                
+                                
                 hidden = true;
-            }
+                SetColor();
+            }            
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -62,7 +64,7 @@ namespace UnityEngine.XR.Tirocinio
             Color color;
             background = this.GetComponent<Image>();
 
-            if (hidden)
+            if (!hidden)
             {
                 ColorUtility.TryParseHtmlString("#FBC531", out color);
                 background.color = color;

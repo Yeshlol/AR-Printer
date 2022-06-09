@@ -3,10 +3,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
+
+// Questo script gestisce l'interazione dell'utente con il bottone QuitButton, modificandone il colore, e chiude l'applicazione alla pressione del tasto.
 public class QuitScript : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject videoPrefab;
-
     public Color buttonHover;
     private Image background;
 
@@ -17,9 +17,7 @@ public class QuitScript : MonoBehaviour, IPointerEnterHandler, IPointerClickHand
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {
-        VideoPlayer videoPlayer = videoPrefab.GetComponentInChildren<VideoPlayer>();
-        //videoPlayer.clip = Resources.Load<VideoClip>("VideoPlayer/Accensione");
+    {        
         Application.Quit();
     }
 

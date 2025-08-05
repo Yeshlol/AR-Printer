@@ -17,7 +17,6 @@ Guidare l'utente passo-passo nella manutenzione hardware di una stampante attrav
 ⦁	Sovrapposizione AR di istruzioni e animazioni.
 ⦁	Backend leggero per gestione contenuti e dati.
 
-
 📄 Stato del progetto
 Completato come progetto di tesi – prototipo funzionante
 
@@ -35,6 +34,7 @@ Completato come progetto di tesi – prototipo funzionante
 5. Installare md5, con il comando 'npm install md5'.
 6. Posizionarsi nella directory node-express ed eseguire il comando 'npm run start'; il server ascolterà le richieste sulla porta 8000.
 
-Durante l'esecuzione dello script, se le tabelle sono già create, andrà a dropparle (per applicare eventuali modifiche apportate) quindi bisogna rilanciare lo script,  ctrl+c -> S -> npm run start
+Durante l'esecuzione dello script, se le tabelle sono già create, andrà a dropparle (per applicare eventuali modifiche apportate) quindi bisogna rilanciare lo script,  ctrl+c -> S -> npm run start.
+
 Nello script UpdateScript in Assets/Resources/Scripts alla riga 371 e 400, e nello script ShowStats alla riga 45, è codificato l'ip da modificare a seconda dell'host    del web server (ricordarsi di aprire la porta 8000).
 

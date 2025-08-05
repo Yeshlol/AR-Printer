@@ -17,13 +17,17 @@ Guidare l'utente passo-passo nella manutenzione hardware di una stampante attrav
 ⦁	Sovrapposizione AR di istruzioni e animazioni.
 ⦁	Backend leggero per gestione contenuti e dati.
 
+
+📄 Stato del progetto
+Completato come progetto di tesi – prototipo funzionante
+
 ⚙️ Avvio del progetto
 1.	Clona il repository.
 2.	Apri il progetto in Unity3D.
 3.	Installa AR Foundation e ARCore da Package Manager.
 4.	Build su dispositivo Android compatibile con ARCore.
 
-Per avviare il web server, bisogna:
+⚙️ Per avviare il web server, bisogna:
 1. Installare Node.js.
 2. Creare un progetto npm vuoto, con il comando 'npm init'.
 3. Installare Express.js, con il comando 'npm install express'.
@@ -33,3 +37,4 @@ Per avviare il web server, bisogna:
 
 Durante l'esecuzione dello script, se le tabelle sono già create, andrà a dropparle (per applicare eventuali modifiche apportate) quindi bisogna rilanciare lo script,  ctrl+c -> S -> npm run start
 Nello script UpdateScript in Assets/Resources/Scripts alla riga 371 e 400, e nello script ShowStats alla riga 45, è codificato l'ip da modificare a seconda dell'host    del web server (ricordarsi di aprire la porta 8000).
+
